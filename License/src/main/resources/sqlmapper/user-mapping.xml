@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.waibao.dao.user.UserDao">
+<resultMap id="BaseResultMap" type="com.waibao.dao.user.dataobject.UserLoginDO" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="school_num" property="schoolNum" jdbcType="BIGINT" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, school_num, password, open_id, gmt_created, gmt_modified
+  </sql>
+  <select id="seletUser" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from user
+  	where open_id = #{openId,jdbcType=VARCHAR}
+  </select>
+  <select id="seletIsBinding" resultType="java.lang.String">
+  	select
+  	is_binding
+  	from user
+  	where open_id = #{openId,jdbcType=VARCHAR}
+  </select>
+  <update id="updateBinding" parameterType="com.waibao.dao.user.dataobject.BindingDO" >
+    update circle_activity
+    <set >
+      <if test="schoolNum != null" >
+        school_num = #{schoolNum,jdbcType=BIGINT},
+      </if>
+      <if test="password != null">
+      	password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="unionId != null">
+      	open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      	is_binding = 1
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
