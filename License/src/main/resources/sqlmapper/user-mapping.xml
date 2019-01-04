@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.waibao.dao.user.UserDao">
-<resultMap id="BaseResultMap" type="com.waibao.dao.user.dataobject.UserLoginDO" >
+<mapper namespace="com.license.dao.user.UserDao">
+<resultMap id="BaseResultMap" type="com.license.dao.user.dataobject.UserLoginDO" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="school_num" property="schoolNum" jdbcType="BIGINT" />
     <result column="open_id" property="openId" jdbcType="VARCHAR" />
@@ -21,7 +21,7 @@
   	from user
   	where open_id = #{openId,jdbcType=VARCHAR}
   </select>
-  <update id="updateBinding" parameterType="com.waibao.dao.user.dataobject.BindingDO" >
+  <update id="updateBinding" parameterType="com.license.dao.user.dataobject.BindingDO" >
     update circle_activity
     <set >
       <if test="schoolNum != null" >

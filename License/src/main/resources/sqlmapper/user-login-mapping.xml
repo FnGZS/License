@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.waibao.dao.user.UserLoginDao">
-<resultMap id="BaseResultMap" type="com.waibao.dao.user.dataobject.UserLoginDO" >
+<mapper namespace="com.license.dao.user.UserLoginDao">
+<resultMap id="BaseResultMap" type="com.license.dao.user.dataobject.UserLoginDO" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="open_id" property="openId" jdbcType="VARCHAR" />
     <result column="login_account" property="loginAccount" jdbcType="VARCHAR" />
@@ -27,7 +27,7 @@
   	where open_id = #{openId,jdbcType=VARCHAR}
   	limit 1
   </select>
-  <insert id="insert" parameterType="com.waibao.dao.user.dataobject.UserLoginDO" >
+  <insert id="insert" parameterType="com.license.dao.user.dataobject.UserLoginDO" >
     insert into user_login 
     (
     	open_id, 
@@ -47,7 +47,7 @@
 		NOW()
 	)
   </insert>
-  <update id="update" parameterType="com.waibao.dao.user.dataobject.UserLoginDO" >
+  <update id="update" parameterType="com.license.dao.user.dataobject.UserLoginDO" >
     update user_login
     set access_token = #{accessToken,jdbcType=VARCHAR},
 		sign_in_count = sign_in_count + 1,
